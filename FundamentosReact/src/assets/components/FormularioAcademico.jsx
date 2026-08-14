@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function FormularioAcademico({ anterior, siguiente }) {
+function FormularioAcademico({ persona, setpersona, anterior, siguiente }) {
   const [nivel, setNivel] = useState("");
   const [institucion, setInstitucion] = useState("");
   const [titulo, setTitulo] = useState("");

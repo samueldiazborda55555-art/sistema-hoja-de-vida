@@ -1,22 +1,16 @@
 import { useState } from "react";
-function FormularioDatos({ siguiente }) {
+function FormularioDatos({ persona, setPersona, siguiente }) {
   
-  //Estados del formulario
-  const [foto, setFoto] = useState(null);
-  const [nombre, setNombre] = useState("");
-  const [edad, setEdad] = useState("");
-  const [ciudad, setCiudad] = useState("");
-  const [correo, setCorreo] = useState("");
-  const [programa, setPrograma] = useState("");
-  const [ficha, setFicha] = useState("");
-  const [jornada, setJornada] = useState("Mañana");
 
   // Función del botón Continuar
   const continuar = (e) => {
-  e.preventDefault();
-  alert("Los datos fueron capturados correctamente.");
-  siguiente();
-};
+    e.preventDefault();
+    alert("Los datos fueron capturados correctamente.");
+
+    if (siguiente) {
+      siguiente();
+    }
+  };
 
 
   return (
@@ -31,7 +25,7 @@ function FormularioDatos({ siguiente }) {
         <input
           type="file"
           accept="image/*"
-          onChange={(e) => setPersona({...persona,foto: e.target.files[0]})}
+          onChange={(e) => setPersona({...persona, foto: e.target.files[0]})}
         />
       </div>
 

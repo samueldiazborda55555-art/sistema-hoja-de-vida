@@ -1,73 +1,91 @@
 import { useState } from "react";
-import Header from "./assets/components/Header";
-import Footer from "./assets/components/Footer";
-import FormularioDatos from "./assets/components/FormularioDatos";
-import FormularioAcademico from "./assets/components/FormularioAcademico";
-import FormularioExperiencia from "./assets/components/FormularioExperiencia";
+
+import Header from "./components/Header";
+import FormularioDatos from "./components/FormularioDatos";
+import FormacionAcademica from "./components/FormularioAcademico";
+import ExperienciaLaboral from "./components/FormularioExperiencia";
+import VistaPrevia from "./components/VistaPrevia";
+import Footer from "./components/Footer";
+
 import "./App.css";
 
 function App() {
-  const [paso, setPaso] = useState(1);
+    const [paso, setPaso] = useState(1);
 
-  //datos compartidos
-  const [persona,setpersona] = useState({
-    
-    
-    //datos personales de la persona
-    foto: null,
-    nomte:"",
-    edad:"",
-    ciudad:"",
-    correo:"",
-    programa:"",
-    ficha:"",
-    jornada:"Mañana",
+    // Datos compartidos
+    const [persona, setPersona] = useState({
 
-    //informmación de estudios
-    nivel:"",
-    institucion:"",
-    titulo:"",
-    anio:"",
-    cursos:"",
+        // Datos personales
+        foto: null,
+        nombre: "",
+        edad: "",
+        ciudad: "",
+        correo: "",
+        programa: "",
+        ficha: "",
+        jornada: "Mañana",
 
-    //experiencia
-    empresa:"",
-    cargo:"",
-    tiempo:"",
-    funciones:"",
-    habilidades:"",
+        // Formación académica
+        nivel: "",
+        institucion: "",
+        titulo: "",
+        anio: "",
+        cursos: [],
 
+        // Experiencia laboral
+        experiencias: []
+        
+    });
 
-  })
+    return (
+        <div className="contenedor">
 
-  return (
-    <div className="contenedor">
+            <Header />
 
-      <Header />
+            {/* PASO 1 */}
+            {paso === 1 && (
+                <FormularioDatos
+                    persona={persona}
+                    setPersona={setPersona}
+                    siguiente={() => setPaso(2)}
+                />
+            )}
 
-      {paso === 1 && (
-        <FormularioDatos
-          siguiente={() => setPaso(2)}
-        />
-      )}
+            {/* PASO 2 */}
+            {paso === 2 && (
+                <FormacionAcademica
+                    persona={persona}
+                    setPersona={setPersona}
+                    anterior={() => setPaso(1)}
+                    siguiente={() => setPaso(3)}
+                />
+            )}
 
-      {paso === 2 && (
-        <FormularioAcademico
-          anterior={() => setPaso(1)}
-          siguiente={() => setPaso(3)}
-        />
-      )}
+            {/* PASO 3 */}
+            {paso === 3 && (
+                <ExperienciaLaboral
+                    persona={persona}
+                    setPersona={setPersona}
+                    anterior={() => setPaso(2)}
+                    siguiente={() => setPaso(4)}
+                />
+            )}
 
-      {paso === 3 && (
-        <FormularioExperiencia
-          anterior={() => setPaso(2)}
-        />
-      )}
+            {/* PASO 4 */}
+            {paso === 4 && (
+                <VistaPrevia
+                    persona={persona}
+                    anterior={() => setPaso(3)}
+                    enviar={() => {
+                        alert("Hoja de vida enviada correctamente.");
+                    }}
+                />
+            )}
 
-      <Footer />
+            <Footer />
 
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;
