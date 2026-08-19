@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #6d214f, #c44569);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+}
+
+/* Contenedor principal de cada vista */
+.pagina-formacion, .contenedor {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pagina-formacion h1 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Tarjeta Blanca Central */
+.tarjeta-formulario, .formulario {
+    background: #ffffff;
+    width: 100%;
+    max-width: 650px;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    color: #333333;
+}
+
+.tarjeta-formulario h2, .formulario h2 {
+    text-align: center;
+    color: #8e2458;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+/* Formularios y Grids */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.grid-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+}
+
+.grupo-completo {
+    grid-column: 1 / -1;
+}
+
+/* Grupos e Inputs */
+.grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.grupo label {
+    margin-bottom: 8px;
+    color: #6d214f;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.grupo input,
+.grupo select,
+.grupo textarea {
+    padding: 12px 15px;
+    border: 2px solid #e2a1c7;
+    border-radius: 12px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: #fff8fb;
+    color: #222;
+}
+
+.grupo input:focus,
+.grupo select:focus,
+.grupo textarea:focus {
+    border-color: #8e2458;
+    box-shadow: 0 0 10px rgba(142, 36, 88, .25);
+    background: #ffffff;
+}
+
+/* Botones */
+.botones {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn, button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #8e2458, #c44569);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover, button:hover {
+    background: linear-gradient(135deg, #6d214f, #8e2458);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(109, 33, 79, .3);
+}
+
+.btn-agregar {
+    background: #6d214f;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.btn-eliminar {
+    background: #e74c3c;
+    padding: 6px 14px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.btn-eliminar:hover {
+    background: #c0392b;
+}
+
+.btn-confirmar {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+.btn-confirmar:hover {
+    background: linear-gradient(135deg, #219150, #27ae60);
+}
+
+/* Secciones de la Vista Previa */
+.seccion-resumen {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.seccion-resumen h3 {
+    color: #8e2458;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #f3d0e3;
+    padding-bottom: 5px;
+}
+
+.seccion-resumen p {
+    margin: 6px 0;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.experiencia-item, .experiencia-item-resumen {
+    background: #fff0f6;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 12px;
+    border-left: 4px solid #8e2458;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+footer {
+    margin-top: 25px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .tarjeta-formulario, .formulario {
+        padding: 20px;
+    }
+
+    .botones {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
