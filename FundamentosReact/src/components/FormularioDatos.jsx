@@ -1,22 +1,67 @@
 import { useState } from "react";
-function FormularioDatos({ siguiente }) {
+function FormularioDatos({ persona, setPersona, siguiente }) {
   
-  //Estados del formulario
-  const [foto, setFoto] = useState(null);
-  const [nombre, setNombre] = useState("");
-  const [edad, setEdad] = useState("");
-  const [ciudad, setCiudad] = useState("");
-  const [correo, setCorreo] = useState("");
-  const [programa, setPrograma] = useState("");
-  const [ficha, setFicha] = useState("");
-  const [jornada, setJornada] = useState("Mañana");
 
   // Función del botón Continuar
   const continuar = (e) => {
-  e.preventDefault();
-  alert("Los datos fueron capturados correctamente.");
-  siguiente();
-};
+    e.preventDefault();
+
+    if(persona.nombre.trim() ==="")
+    {
+      alert("Ingresar nombre completo")
+      return;
+    }
+
+    if(persona.edad.trim() ==="")
+    {
+      alert("Ingresar edad")
+      return;
+    }
+
+    if(persona.edad < 1 || persona.edad >=100)
+    {
+      alert("La edad no es valida debe estar entre 1 y 100")
+      return;
+    }
+
+    if(persona.ciudad.trim() ==="")
+    {
+      alert("Ingresar ciudad")
+      return;
+    }
+
+    if(persona.correo.trim() ==="")
+    {
+      alert("Ingresar correo electronico")
+      return;
+    }
+    const excorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!excorreo.test(persona.correo.trim())){
+      alert("Ingresar un correo electronico valido")
+    }
+
+    if(persona.programa.trim() ==="")
+    {
+      alert("Ingresar programa de formación")
+      return;
+    }
+
+    if(persona.ficha.trim() ==="")
+    {
+      alert("Ingresar numero de ficha")
+      return;
+    }
+
+    if(persona.jornada.trim() ==="")
+    {
+      alert("Ingresar jornada")
+      return;
+    }
+  
+    if (siguiente) {
+      siguiente();
+    }
+  };
 
 
   return (
@@ -31,7 +76,7 @@ function FormularioDatos({ siguiente }) {
         <input
           type="file"
           accept="image/*"
-          onChange={(e) => setPersona({...persona,foto: e.target.files[0]})}
+          onChange={(e) => setPersona({...persona, foto: e.target.files[0]})}
         />
       </div>
 
