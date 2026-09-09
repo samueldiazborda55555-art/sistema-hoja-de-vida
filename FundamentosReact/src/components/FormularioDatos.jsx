@@ -5,6 +5,7 @@ function FormularioDatos({ persona, setPersona, siguiente }) {
   // Función del botón Continuar
   const continuar = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
 
     if(persona.nombre.trim() ==="")
     {
@@ -58,6 +59,10 @@ function FormularioDatos({ persona, setPersona, siguiente }) {
       return;
     }
   
+=======
+    alert("Los datos fueron capturados correctamente.");
+
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
     if (siguiente) {
       siguiente();
     }

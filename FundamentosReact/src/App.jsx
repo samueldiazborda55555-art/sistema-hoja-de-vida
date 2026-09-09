@@ -31,13 +31,21 @@ function App() {
         titulo: "",
         anio: "",
         cursos: [],
+<<<<<<< HEAD
+
+        // Experiencia laboral
+        experiencias: []
+        
+    });
+=======
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
 
         // Experiencia laboral
         experiencias: []
         
     });
 
-
+<<<<<<< HEAD
     //conrctar react con flask
     const guardarhojavida = async () => {
         try{
@@ -134,6 +142,55 @@ function App() {
 
             <Footer />
 
+=======
+    return (
+        <div className="contenedor">
+
+            <Header />
+
+            {/* PASO 1 */}
+            {paso === 1 && (
+                <FormularioDatos
+                    persona={persona}
+                    setPersona={setPersona}
+                    siguiente={() => setPaso(2)}
+                />
+            )}
+
+            {/* PASO 2 */}
+            {paso === 2 && (
+                <FormacionAcademica
+                    persona={persona}
+                    setPersona={setPersona}
+                    anterior={() => setPaso(1)}
+                    siguiente={() => setPaso(3)}
+                />
+            )}
+
+            {/* PASO 3 */}
+            {paso === 3 && (
+                <ExperienciaLaboral
+                    persona={persona}
+                    setPersona={setPersona}
+                    anterior={() => setPaso(2)}
+                    siguiente={() => setPaso(4)}
+                />
+            )}
+
+            {/* PASO 4 */}
+            {paso === 4 && (
+                <VistaPrevia
+                    persona={persona}
+                    anterior={() => setPaso(3)}
+                    enviar={() => {
+                        alert("Hoja de vida enviada correctamente.");
+                    }}
+                />
+            )}
+
+            <Footer />
+
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
         </div>
     );
 }

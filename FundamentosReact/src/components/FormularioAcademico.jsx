@@ -1,6 +1,15 @@
 import { useState } from "react";
 
+<<<<<<< HEAD
 function FormularioAcademico({persona,setPersona,anterior,siguiente}) {
+=======
+function FormularioAcademico({
+    persona,
+    setPersona,
+    anterior,
+    siguiente
+}) {
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
 
     // Estado temporal para escribir un nuevo curso
     const [nuevoCurso, setNuevoCurso] = useState("");
@@ -42,6 +51,7 @@ function FormularioAcademico({persona,setPersona,anterior,siguiente}) {
 
         e.preventDefault();
 
+<<<<<<< HEAD
         if(persona.nivel.trim() ==="")
           {
             alert("Ingresar nivel de formacion")
@@ -74,6 +84,11 @@ function FormularioAcademico({persona,setPersona,anterior,siguiente}) {
 
         if (siguiente) {
 
+=======
+        alert("Los datos fueron capturados correctamente.");
+
+        if (siguiente) {
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
             siguiente();
         }
     };
@@ -214,9 +229,19 @@ function FormularioAcademico({persona,setPersona,anterior,siguiente}) {
 
 
                     {/* LISTA DE CURSOS */}
+<<<<<<< HEAD
                     {persona.cursos.length > 0 && (
                         <div className="lista-cursos">
                             {persona.cursos.map((curso, indice) => (
+=======
+
+                    {persona.cursos.length > 0 && (
+
+                        <div className="lista-cursos">
+
+                            {persona.cursos.map((curso, indice) => (
+
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
                                 <div
                                     className="curso-item"
                                     key={indice}
@@ -235,14 +260,30 @@ function FormularioAcademico({persona,setPersona,anterior,siguiente}) {
                                     >
                                         Eliminar
                                     </button>
+<<<<<<< HEAD
                                 </div>
                             ))}
                         </div>
                     )}
+=======
+
+                                </div>
+
+                            ))}
+
+                        </div>
+
+                    )}
+
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
                 </div>
 
 
                 {/* BOTONES */}
+<<<<<<< HEAD
+=======
+
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
                 <div className="botones">
 
                     <button
@@ -260,9 +301,19 @@ function FormularioAcademico({persona,setPersona,anterior,siguiente}) {
                     >
                         Siguiente →
                     </button>
+<<<<<<< HEAD
                 </div>
             </form>
         </div>
+=======
+
+                </div>
+
+            </form>
+
+        </div>
+
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
     );
 }
 

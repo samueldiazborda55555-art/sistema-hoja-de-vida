@@ -26,6 +26,7 @@ function FormularioExperiencia({
 
     };
 
+<<<<<<< HEAD
 
     const agregarExperiencia = () => {
         if (experienciaActual.empresa.trim() === "") {
@@ -54,6 +55,31 @@ function FormularioExperiencia({
         }
 
         setPersona({...persona,experiencias: [...(persona.experiencias || []),experienciaActual]
+=======
+    // Agregar experiencia
+    const agregarExperiencia = () => {
+
+        if (
+            experienciaActual.empresa.trim() === "" ||
+            experienciaActual.cargo.trim() === ""
+        ) {
+
+            alert(
+                "Por favor completa como mínimo la empresa y el cargo."
+            );
+
+            return;
+        }
+
+        setPersona({
+            ...persona,
+
+            experiencias: [
+                ...(persona.experiencias || []),
+                experienciaActual
+            ]
+
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
         });
 
         // Limpiar formulario
@@ -90,6 +116,7 @@ function FormularioExperiencia({
 
         e.preventDefault();
 
+<<<<<<< HEAD
         if (
             persona.experiencias &&
             persona.experiencias.length > 0
@@ -138,10 +165,19 @@ function FormularioExperiencia({
             alert(
                 "completa el campo Habilidades Técnicas."
             );
+=======
+        if (!persona.experiencias || persona.experiencias.length === 0) {
+
+            alert(
+                "Agrega al menos una experiencia laboral."
+            );
+
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
             return;
         }
 
         alert(
+<<<<<<< HEAD
             "presiona '+ Agregar Experiencia' antes de continuar"
         );
     };
@@ -149,6 +185,23 @@ function FormularioExperiencia({
     return (
         <div className="formulario">
             <h2>Experiencia Laboral</h2>
+=======
+            "Las experiencias fueron capturadas correctamente."
+        );
+
+        if (siguiente) {
+            siguiente();
+        }
+
+    };
+
+    return (
+
+        <div className="formulario">
+
+            <h2>Experiencia Laboral</h2>
+
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
             <form onSubmit={enviar}>
 
                 {/* EMPRESA */}
@@ -345,4 +398,8 @@ function FormularioExperiencia({
     );
 }
 
+<<<<<<< HEAD
 export default FormularioExperiencia;
+=======
+export default FormularioExperiencia;
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523

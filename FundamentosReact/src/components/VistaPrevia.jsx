@@ -103,7 +103,11 @@ function VistaPrevia({ persona, anterior, enviar }) {
             ← Editar datos
           </button>
 
+<<<<<<< HEAD
           <button type="button" className="btn" onClick={guardarHojavida} style={{backgroundColor: '#28a745', color: 'white'}}>
+=======
+          <button type="button" className="btn" onClick={confirmarEnvio} style={{backgroundColor: '#28a745', color: 'white'}}>
+>>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
             Confirmar y Enviar →
           </button>
         </div>
