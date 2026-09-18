@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import Header from "./components/Header";
-import FormularioDatos from "./components/FormularioDatos";
 import FormacionAcademica from "./components/FormularioAcademico";
+import FormularioDatos from "./components/FormularioDatos";
 import ExperienciaLaboral from "./components/FormularioExperiencia";
 import VistaPrevia from "./components/VistaPrevia";
 import Footer from "./components/Footer";
@@ -31,72 +31,116 @@ function App() {
         titulo: "",
         anio: "",
         cursos: [],
-<<<<<<< HEAD
 
         // Experiencia laboral
-        experiencias: []
-        
-    });
-=======
->>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
+        experiencias: [],
 
-        // Experiencia laboral
-        experiencias: []
-        
     });
 
-<<<<<<< HEAD
-    //conrctar react con flask
-    const guardarhojavida = async () => {
-        try{
+    // Conectar React con Flask
+        // Conectar React con Flask
+    const guardarHojavida = async () => {
 
+        try {
+            // 1. Guardar datos personales
             const datosapi = {
-                nombre:aprendiz.nombre,
-                edad:aprendiz.edad,
-                ciudad:aprendiz.ciudad,
-                correo:aprendiz.correo,
-                fotografia:aprendiz.fotografia,
-                programa:aprendiz.programa,
-                ficha:aprendiz.ficha,
-                jornada:aprendiz.jornada,
+                nombre: persona.nombre,
+                edad: persona.edad,
+                ciudad: persona.ciudad,
+                correo: persona.correo,
+                fotografia: persona.foto ? persona.foto.name : "",
+                programa: persona.programa,
+                ficha: persona.ficha,
+                jornada: persona.jornada
             };
 
             const respuesta = await fetch(
                 "http://127.0.0.1:5000/api/registrohv",
                 {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-
-                    body:JSON.stringify(datosapi)
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(datosapi)
                 }
             );
-            const resultado = await respuesta.json(); 
 
-            console.log("respuesta realizada", resultado);
+            const resultado = await respuesta.json();
 
+            if (!respuesta.ok) {
+                alert(resultado.mensaje || "Error al registrar los datos personales");
+                return;
+            }
 
+            const idHoja = resultado.id;
 
-
-
-
-
-
-        }catch(error){
-            console.error(
-                "error al conectar con flask",error
+            // 2. Guardar formación académica (estudios)
+            await fetch(
+                `http://127.0.0.1:5000/api/hojas-vida/${idHoja}/estudios`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        nivel: persona.nivel,
+                        institucion: persona.institucion,
+                        titulo: persona.titulo,
+                        anio_graduacion: persona.anio
+                    })
+                }
             );
-        };
+
+            // 3. Guardar cursos (uno por uno)
+            for (const curso of persona.cursos) {
+                await fetch(
+                    `http://127.0.0.1:5000/api/hojas-vida/${idHoja}/cursos`,
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ nombre: curso })
+                    }
+                );
+            }
+
+            // 4. Guardar experiencias laborales (una por una)
+            for (const exp of persona.experiencias) {
+
+                const respExp = await fetch(
+                    `http://127.0.0.1:5000/api/hojas-vida/${idHoja}/experiencias`,
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            empresa: exp.empresa,
+                            cargo: exp.cargo,
+                            tiempo: exp.tiempo,
+                            funciones: exp.funcion.join(", ")
+                        })
+                    }
+                );
+
+                const resultadoExp = await respExp.json();
+                const idExperiencia = resultadoExp.id;
+
+                // 5. Guardar habilidades de esa experiencia
+                for (const habilidad of exp.habilidades) {
+                    await fetch(
+                        `http://127.0.0.1:5000/api/experiencias/${idExperiencia}/habilidades`,
+                        {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ nombre: habilidad })
+                        }
+                    );
+                }
+            }
+
+            alert("Hoja de vida registrada correctamente, con toda la información");
+
+        } catch (error) {
+            console.error("Error al conectar con Flask", error);
+            alert("Ocurrió un error al guardar la hoja de vida");
+        }
 
     };
 
-
-
-
-
-
-
     return (
         <div className="contenedor">
 
@@ -136,61 +180,12 @@ function App() {
                 <VistaPrevia
                     persona={persona}
                     anterior={() => setPaso(3)}
-                    guardarHojavida={guardarhojavida}
+                    guardarHojavida={guardarHojavida}
                 />
             )}
 
             <Footer />
 
-=======
-    return (
-        <div className="contenedor">
-
-            <Header />
-
-            {/* PASO 1 */}
-            {paso === 1 && (
-                <FormularioDatos
-                    persona={persona}
-                    setPersona={setPersona}
-                    siguiente={() => setPaso(2)}
-                />
-            )}
-
-            {/* PASO 2 */}
-            {paso === 2 && (
-                <FormacionAcademica
-                    persona={persona}
-                    setPersona={setPersona}
-                    anterior={() => setPaso(1)}
-                    siguiente={() => setPaso(3)}
-                />
-            )}
-
-            {/* PASO 3 */}
-            {paso === 3 && (
-                <ExperienciaLaboral
-                    persona={persona}
-                    setPersona={setPersona}
-                    anterior={() => setPaso(2)}
-                    siguiente={() => setPaso(4)}
-                />
-            )}
-
-            {/* PASO 4 */}
-            {paso === 4 && (
-                <VistaPrevia
-                    persona={persona}
-                    anterior={() => setPaso(3)}
-                    enviar={() => {
-                        alert("Hoja de vida enviada correctamente.");
-                    }}
-                />
-            )}
-
-            <Footer />
-
->>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
         </div>
     );
 }

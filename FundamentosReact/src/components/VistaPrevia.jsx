@@ -1,117 +1,195 @@
 import React from 'react';
 
-function VistaPrevia({ persona, anterior, enviar }) {
+function VistaPrevia({ persona, anterior, guardarHojavida }) {
 
-  const confirmarEnvio = () => {
-    alert("¡Registro completado exitosamente!");
-    if(enviar) enviar();
-  };
-
-  const urlFoto = persona.foto ? URL.createObjectURL(persona.foto) : null;
+  const urlFoto = persona.foto
+    ? URL.createObjectURL(persona.foto)
+    : null;
 
   return (
     <div className="pagina-formacion">
+
       <h1>Resumen de la Hoja de Vida</h1>
 
       <div className="tarjeta-formulario">
+
         <h2>Vista Previa de Información</h2>
 
-
-
-        {/* Muestra la fotografía si el usuario la seleccionó */}
+        {/* Fotografía */}
         {urlFoto && (
-          <div className="contenedor-foto" style={{ textAlign: 'center', marginBottom: '20px' }}>
-            <img 
-              src={urlFoto} 
-              alt="Fotografía del aprendiz" 
+          <div
+            className="contenedor-foto"
+            style={{
+              textAlign: 'center',
+              marginBottom: '20px'
+            }}
+          >
+
+            <img
+              src={urlFoto}
+              alt="Fotografía del aprendiz"
               style={{
                 width: '130px',
                 height: '130px',
                 objectFit: 'cover',
                 borderRadius: '50%',
                 border: '3px solid #007bff'
-              }} 
+              }}
             />
+
           </div>
         )}
 
-        {/* Sección Datos Personales */}
+        {/* Datos personales */}
         <section className="seccion-resumen">
+
           <h3>Datos Personales</h3>
-          <p><strong>Nombre:</strong> {persona.nombre || "No especificado"}</p>
-          <p><strong>Edad:</strong> {persona.edad}</p>
-          <p><strong>Ciudad:</strong> {persona.ciudad}</p>
-          <p><strong>Programa:</strong> {persona.programa}</p>
-          <p><strong>Correo:</strong> {persona.correo}</p>
-          <p><strong>Ficha:</strong> {persona.ficha}</p>
-          <p><strong>Jornada:</strong> {persona.jornada}</p>
+
+          <p>
+            <strong>Nombre:</strong> {persona.nombre || "No especificado"}
+          </p>
+
+          <p>
+            <strong>Edad:</strong> {persona.edad}
+          </p>
+
+          <p>
+            <strong>Ciudad:</strong> {persona.ciudad}
+          </p>
+
+          <p>
+            <strong>Programa:</strong> {persona.programa}
+          </p>
+
+          <p>
+            <strong>Correo:</strong> {persona.correo}
+          </p>
+
+          <p>
+            <strong>Ficha:</strong> {persona.ficha}
+          </p>
+
+          <p>
+            <strong>Jornada:</strong> {persona.jornada}
+          </p>
+
         </section>
 
         <hr />
 
-        {/* Sección Formación Académica */}
+        {/* Formación académica */}
         <section className="seccion-resumen">
+
           <h3>Formación Académica</h3>
-          <p><strong>Nivel:</strong> {persona.nivel}</p>
-          <p><strong>Institución:</strong> {persona.institucion}</p>
-          <p><strong>Título:</strong> {persona.titulo}</p>
-          <p><strong>Año:</strong> {persona.anio}</p>
-          <p><strong>Cursos:</strong> {persona.cursos}</p>
+
+          <p>
+            <strong>Nivel:</strong> {persona.nivel}
+          </p>
+
+          <p>
+            <strong>Institución:</strong> {persona.institucion}
+          </p>
+
+          <p>
+            <strong>Título:</strong> {persona.titulo}
+          </p>
+
+          <p>
+            <strong>Año:</strong> {persona.anio}
+          </p>
+
+          <p>
+            <strong>Cursos:</strong>{" "}
+            {persona.cursos.join(", ")}
+          </p>
+
         </section>
 
         <hr />
 
+        {/* Experiencia laboral */}
         <section className="seccion-resumen">
-  <h3>Experiencia Laboral</h3>
 
-  {persona.experiencias && persona.experiencias.length > 0 ? (
-    persona.experiencias.map((experiencia, indice) => (
-      <div key={indice} className="experiencia-resumen">
+          <h3>Experiencia Laboral</h3>
 
-        <h4>Experiencia {indice + 1}</h4>
+          {persona.experiencias &&
+          persona.experiencias.length > 0 ? (
 
-        <p>
-          <strong>Empresa:</strong> {experiencia.empresa}
-        </p>
+            persona.experiencias.map((experiencia, indice) => (
 
-        <p>
-          <strong>Cargo:</strong> {experiencia.cargo}
-        </p>
+              <div
+                key={indice}
+                className="experiencia-resumen"
+              >
 
-        <p>
-          <strong>Tiempo:</strong> {experiencia.tiempo}
-        </p>
+                <h4>
+                  Experiencia {indice + 1}
+                </h4>
 
-        <p>
-          <strong>Funciones:</strong> {experiencia.funciones}
-        </p>
+                <p>
+                  <strong>Empresa:</strong>{" "}
+                  {experiencia.empresa}
+                </p>
 
-        <p>
-          <strong>Habilidades:</strong> {experiencia.habilidades}
-        </p>
+                <p>
+                  <strong>Cargo:</strong>{" "}
+                  {experiencia.cargo}
+                </p>
 
-      </div>
-    ))
-  ) : (
-    <p>No se ha registrado experiencia laboral.</p>
-  )}
+                <p>
+                  <strong>Tiempo:</strong>{" "}
+                  {experiencia.tiempo}
+                </p>
 
-</section>
+                <p>
+                  <strong>Funciones:</strong>{" "}
+                  {experiencia.funcion.join(", ")}
+                </p>
 
+                <p>
+                  <strong>Habilidades:</strong>{" "}
+                  {experiencia.habilidades.join(", ")}
+                </p>
+
+              </div>
+
+            ))
+
+          ) : (
+
+            <p>No se ha registrado experiencia laboral.</p>
+
+          )}
+
+        </section>
+
+        {/* Botones */}
         <div className="botones">
-          <button type="button" className="btn" onClick={anterior}>
+
+          <button
+            type="button"
+            className="btn"
+            onClick={anterior}
+          >
             ← Editar datos
           </button>
 
-<<<<<<< HEAD
-          <button type="button" className="btn" onClick={guardarHojavida} style={{backgroundColor: '#28a745', color: 'white'}}>
-=======
-          <button type="button" className="btn" onClick={confirmarEnvio} style={{backgroundColor: '#28a745', color: 'white'}}>
->>>>>>> dc5706495b5b4eb20480376135b982728a4e6523
+          <button
+            type="button"
+            className="btn"
+            onClick={guardarHojavida}
+            style={{
+              backgroundColor: '#28a745',
+              color: 'white'
+            }}
+          >
             Confirmar y Enviar →
           </button>
+
         </div>
+
       </div>
+
     </div>
   );
 }
