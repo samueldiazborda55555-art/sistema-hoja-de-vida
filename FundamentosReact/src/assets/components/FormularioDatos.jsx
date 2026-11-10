@@ -1,5 +1,5 @@
 import { useState } from "react";
-function FormularioDatos({ siguiente }) {
+function FormularioDatos({ persona, setPersona, siguiente }) {
   
   //Estados del formulario
   const [foto, setFoto] = useState(null);
